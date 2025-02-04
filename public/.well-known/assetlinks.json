@@ -1,0 +1,19 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.esolutions.grid",
+      "sha256_cert_fingerprints": ["16:9F:A8:FC:4A:57:83:A1:36:0A:FE:63:D4:42:BB:EC:84:7F:98:89:2C:62:F3:08:38:4F:91:02:04:77:C1:EA"]
+    }
+  },
+
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.esolutions.grid",
+      "sha256_cert_fingerprints": ["9A:88:AD:52:26:D0:0D:6C:1C:25:91:E9:A0:60:D0:F1:87:1B:EA:AE:DE:19:0E:92:71:78:EA:7E:A9:65:E6:EB"]
+    }
+  }
+]

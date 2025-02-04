@@ -1,0 +1,22 @@
+<svg aria-hidden="true" width="231" height="230" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g clip-path="url(#no-item-selected_svg__a)">
+        <path d="m180.825 96.99-22.411 96.923a7.956 7.956 0 0 1-9.547 5.96L48.068 176.566a7.955 7.955 0 0 1-5.96-9.546L72.585 35.206a7.956 7.956 0 0 1 9.547-5.961l65.907 15.24 32.785 52.506Z" fill="#DBDBDB">
+        </path>
+        <path d="m148.039 44.484-8.068 34.892a7.957 7.957 0 0 0 5.961 9.547l34.892 8.068-32.785-52.507Z" fill="url(#no-item-selected_svg__b)">
+        </path>
+        <path fill="#AEAEAE" d="m85.227 96.782 66.252 15.32-1.352 5.845-66.252-15.32zM81.621 112.371l66.252 15.319-1.352 5.846-66.252-15.32zM78.018 127.96l66.252 15.32-1.352 5.845-66.252-15.32z">
+        </path>
+    </g>
+        <defs>
+            <linearGradient id="no-item-selected_svg__b" x1="140.703" y1="85.557" x2="164.909" y2="70.439" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#E6E6E6">
+                </stop>
+                <stop offset="1" stop-color="#AEAEAE">
+                </stop>
+            </linearGradient>
+            <clipPath id="no-item-selected_svg__a">
+                <path fill="#fff" transform="rotate(13.019 21.984 192.666)" d="M0 0h191v191H0z">
+                </path>
+            </clipPath>
+        </defs>
+</svg>

@@ -1,0 +1,176 @@
+/* purgecss start ignore */
+/* @import "../src/fonts/stylesheet.css"; */
+
+/* @import url("https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Sigmar+On&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Sigmar+One&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+
+html {
+  font-family: "Rubik", sans-serif;
+}
+body {
+  @apply bg-[#f2f2f2];
+  @apply font-[Inter];
+  /* @apply bg-[url('/assets/Background.svg')]; */
+}
+p {
+  @apply text-white-300;
+}
+.animation-hover:after {
+  background: none repeat scroll 0 0 transparent;
+  content: "";
+  height: 2px;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  @apply w-0 bg-[#298be1] left-1/2 block bottom-0 absolute;
+}
+.animation-active:after {
+  @apply left-0 w-full;
+}
+.animation-hover:hover:after {
+  @apply left-0 w-full;
+}
+
+li.custom-list:before {
+  content: "\2022"; /* bullet point, for screen readers */
+  text-indent: -9999999px; /* move the bullet point out of sight */
+
+  width: 0.4em;
+  height: 1em;
+  background-repeat: no-repeat;
+
+  background-size: 0.4em 0.7em;
+  background-position: 0 0.3em;
+  font-size: 300%;
+  top: -0.35em;
+  @apply absolute block;
+}
+li.circle-check:before {
+  background-image: url("/assets/Icon/checklist.svg");
+  left: -0.7em;
+  top: -0.4em;
+}
+li.check:before {
+  left: -0.5em;
+  background-image: url("/assets/Icon/jam_check.svg");
+  top: -0.5em;
+  font-size: 400%;
+}
+
+.video-container {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+
+  /* Set the height of the container to the height of the 
+viewport */
+}
+.container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+  margin: auto;
+  border: 1px solid #07aeb9;
+}
+
+/* Then style the iframe to fit in the container div with full height and width */
+.responsive-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+  @media only screen and (max-width: 450px) {
+    border-radius: 9px;
+  }
+}
+
+.video-container iframe {
+  width: 20vw; /* Set the width of the iframe */
+  /* height: 50vh; */
+  @media only screen and (max-width: 450px) {
+    width: 80vw;
+  }
+}
+.swiper-pagination-bullet {
+  background-color: #fff !important;
+}
+.swiper-pagination-bullet-active {
+  background-color: #298be2 !important;
+}
+.swiper-pagination {
+  position: relative !important;
+  margin-top: 0px;
+}
+
+.slick-track {
+  display: flex !important;
+  align-items: center;
+}
+
+.playerWrapper {
+  overflow: hidden;
+  width: 100%;
+  /* padding-bottom: 100%; */
+  position: relative;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+  background-color: blue;
+  @media only screen and (min-width: 768px) {
+    padding-bottom: 56.25%;
+  }
+  .videoPlayer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: contain;
+    transition: opacity 0.25s;
+    iframe {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+/* Slideshow */
+.slick-dots li {
+  @apply inline-block;
+}
+.slick-dots span {
+  @apply bg-gray-500;
+}
+.slick-dots .slick-active span {
+  @apply bg-[#298be1] rounded-l-full rounded-r-full w-12;
+}
+
+.markdown * {
+  all: revert;
+}
+
+.markdown p {
+  margin: 0 0;
+}
+
+.side-block {
+  margin: 2rem 0;
+}
+
+/* purgecss end ignore */
+@tailwind utilities;
+/* purgecss start ignore */
+/* purgecss end ignore */
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+}

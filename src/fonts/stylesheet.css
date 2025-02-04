@@ -1,0 +1,18 @@
+@font-face {
+    font-display: swap;
+    font-family: 'SigmarOneRegular.ttf';
+    
+    src: local('SigmarOneRegular.ttf'), local('SigmarOneRegular.ttf'),
+        url('SigmarOneRegular.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Montserrat.ttf';
+    src: local('Montserrat-VariableFont_wght.ttf'), 
+         url('Montserrat-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900; /* Supports variable font weights from 100 to 900 */
+    font-style: normal;
+}
