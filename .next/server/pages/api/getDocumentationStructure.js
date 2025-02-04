@@ -1,73 +1,35 @@
 "use strict";
+/*
+ * ATTENTION: An "eval-source-map" devtool has been used.
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
 (() => {
 var exports = {};
-exports.id = 856;
-exports.ids = [856];
+exports.id = "pages/api/getDocumentationStructure";
+exports.ids = ["pages/api/getDocumentationStructure"];
 exports.modules = {
 
-/***/ 1921:
+/***/ "(api)/./pages/api/getDocumentationStructure.js":
+/*!************************************************!*\
+  !*** ./pages/api/getDocumentationStructure.js ***!
+  \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-// ESM COMPAT FLAG
-__webpack_require__.r(__webpack_exports__);
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ handler)\n/* harmony export */ });\n/* harmony import */ var _public_documentation_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../public/documentation.json */ \"(api)/./public/documentation.json\");\n// import fs from \"fs\";\n// import path from \"path\";\n// export default function handler(req, res) {\n//   const { dir } = req.query; // Get the directory from the query string\n//   // Default to the 'Welcome-to-Grid' directory if no directory is provided\n//   const articleDirPath = path.join(\n//     process.cwd(),\n//     \"pages\",\n//     dir || \"/Documentation/Welcome-to-Grid\" // Use the provided directory or fallback\n//   );\n//   // Function to read all directories and articles, tracking the relative path\n//   const getStructure = (dir, currentPath = \"\") => {\n//     const items = fs.readdirSync(dir, { withFileTypes: true });\n//     return items\n//       .map((item) => {\n//         const itemPath = path.join(dir, item.name);\n//         const relativePath = path.join(\n//           currentPath,\n//           item.name.replace(\".js\", \"\")\n//         ); // Remove .js from the path\n//         // If it's a directory, recursively read its contents\n//         if (item.isDirectory()) {\n//           return {\n//             type: \"directory\",\n//             name: item.name,\n//             path: relativePath, // Save the current directory path\n//             children: getStructure(itemPath, relativePath),\n//           };\n//         }\n//         // If it's a file (and ends with .js), treat it as an article\n//         if (\n//           item.isFile() &&\n//           item.name.endsWith(\".js\") &&\n//           item.name !== \"index.js\"\n//         ) {\n//           return {\n//             type: \"file\",\n//             name: item.name.replace(\".js\", \"\"), // Remove .js from the name\n//             path: relativePath, // Use the path without .js\n//           };\n//         }\n//       })\n//       .filter(Boolean); // Filter out any undefined entries\n//   };\n//   // Ensure the directory exists before proceeding\n//   if (!fs.existsSync(articleDirPath)) {\n//     return res.status(404).json({ error: \"Directory not found\" });\n//   }\n//   // Fetch structure for directories under the specified path\n//   const documentationStructure = getStructure(articleDirPath);\n//   res.status(200).json(documentationStructure);\n// }\n// pages/api/documentation.js\n\nfunction handler(req, res) {\n    const { dir  } = req.query;\n    // Use the provided directory or default to '/Documentation/Welcome-to-Grid'\n    const targetDir = dir || \"/Documentation/Welcome-to-Grid\";\n    // Recursively search for the node that matches the target path.\n    function findNode(nodes, targetPath) {\n        for (const node of nodes){\n            if (node.path === targetPath) {\n                return node;\n            }\n            if (node.children) {\n                const found = findNode(node.children, targetPath);\n                if (found) return found;\n            }\n        }\n        return null;\n    }\n    // Given a node and its parent's path, strip the parent's path prefix\n    // from the node's full path, and do so recursively for any children.\n    function stripBasePath(node, basePath) {\n        let relativePath = node.path;\n        if (relativePath.startsWith(basePath)) {\n            // Remove the basePath part from the full path.\n            relativePath = relativePath.slice(basePath.length);\n        }\n        // Remove any leading slash to get a clean relative path.\n        if (relativePath.startsWith(\"/\")) {\n            relativePath = relativePath.slice(1);\n        }\n        // Create a new node with the relative path.\n        const newNode = {\n            ...node,\n            path: relativePath\n        };\n        if (node.children) {\n            newNode.children = node.children.map((child)=>stripBasePath(child, basePath));\n        }\n        return newNode;\n    }\n    // Find the node corresponding to the requested directory.\n    const foundNode = findNode(_public_documentation_json__WEBPACK_IMPORTED_MODULE_0__, targetDir);\n    if (!foundNode) {\n        return res.status(404).json({\n            error: \"Directory not found\"\n        });\n    }\n    if (foundNode.type === \"directory\") {\n        // For directories, map over the children and strip the base path.\n        const children = (foundNode.children || []).map((child)=>stripBasePath(child, foundNode.path));\n        return res.status(200).json(children);\n    } else {\n        // For a file, you might also want to adjust the path if needed.\n        const relativeFile = stripBasePath(foundNode, targetDir);\n        return res.status(200).json(relativeFile);\n    }\n}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKGFwaSkvLi9wYWdlcy9hcGkvZ2V0RG9jdW1lbnRhdGlvblN0cnVjdHVyZS5qcy5qcyIsIm1hcHBpbmdzIjoiOzs7OztBQUFBLHVCQUF1QjtBQUN2QiwyQkFBMkI7QUFFM0IsOENBQThDO0FBQzlDLDBFQUEwRTtBQUUxRSw4RUFBOEU7QUFDOUUsc0NBQXNDO0FBQ3RDLHFCQUFxQjtBQUNyQixlQUFlO0FBQ2Ysd0ZBQXdGO0FBQ3hGLE9BQU87QUFFUCxpRkFBaUY7QUFDakYsc0RBQXNEO0FBQ3RELGtFQUFrRTtBQUVsRSxtQkFBbUI7QUFDbkIseUJBQXlCO0FBQ3pCLHNEQUFzRDtBQUN0RCwwQ0FBMEM7QUFDMUMseUJBQXlCO0FBQ3pCLHlDQUF5QztBQUN6Qyx5Q0FBeUM7QUFFekMsZ0VBQWdFO0FBQ2hFLG9DQUFvQztBQUNwQyxxQkFBcUI7QUFDckIsaUNBQWlDO0FBQ2pDLCtCQUErQjtBQUMvQixxRUFBcUU7QUFDckUsOERBQThEO0FBQzlELGVBQWU7QUFDZixZQUFZO0FBRVosd0VBQXdFO0FBQ3hFLGVBQWU7QUFDZiw2QkFBNkI7QUFDN0IseUNBQXlDO0FBQ3pDLHFDQUFxQztBQUNyQyxjQUFjO0FBQ2QscUJBQXFCO0FBQ3JCLDRCQUE0QjtBQUM1Qiw4RUFBOEU7QUFDOUUsOERBQThEO0FBQzlELGVBQWU7QUFDZixZQUFZO0FBQ1osV0FBVztBQUNYLDhEQUE4RDtBQUM5RCxPQUFPO0FBRVAscURBQXFEO0FBQ3JELDBDQUEwQztBQUMxQyxxRUFBcUU7QUFDckUsTUFBTTtBQUVOLGdFQUFnRTtBQUNoRSxpRUFBaUU7QUFFakUsa0RBQWtEO0FBQ2xELElBQUk7QUFFSiw2QkFBNkI7QUFDd0M7QUFFdEQsU0FBU0MsT0FBTyxDQUFDQyxHQUFHLEVBQUVDLEdBQUcsRUFBRTtJQUN4QyxNQUFNLEVBQUVDLEdBQUcsR0FBRSxHQUFHRixHQUFHLENBQUNHLEtBQUs7SUFDekIsNEVBQTRFO0lBQzVFLE1BQU1DLFNBQVMsR0FBR0YsR0FBRyxJQUFJLGdDQUFnQztJQUV6RCxnRUFBZ0U7SUFDaEUsU0FBU0csUUFBUSxDQUFDQyxLQUFLLEVBQUVDLFVBQVUsRUFBRTtRQUNuQyxLQUFLLE1BQU1DLElBQUksSUFBSUYsS0FBSyxDQUFFO1lBQ3hCLElBQUlFLElBQUksQ0FBQ0MsSUFBSSxLQUFLRixVQUFVLEVBQUU7Z0JBQzVCLE9BQU9DLElBQUksQ0FBQztZQUNkLENBQUM7WUFDRCxJQUFJQSxJQUFJLENBQUNFLFFBQVEsRUFBRTtnQkFDakIsTUFBTUMsS0FBSyxHQUFHTixRQUFRLENBQUNHLElBQUksQ0FBQ0UsUUFBUSxFQUFFSCxVQUFVLENBQUM7Z0JBQ2pELElBQUlJLEtBQUssRUFBRSxPQUFPQSxLQUFLLENBQUM7WUFDMUIsQ0FBQztRQUNILENBQUM7UUFDRCxPQUFPLElBQUksQ0FBQztJQUNkLENBQUM7SUFFRCxxRUFBcUU7SUFDckUscUVBQXFFO0lBQ3JFLFNBQVNDLGFBQWEsQ0FBQ0osSUFBSSxFQUFFSyxRQUFRLEVBQUU7UUFDckMsSUFBSUMsWUFBWSxHQUFHTixJQUFJLENBQUNDLElBQUk7UUFDNUIsSUFBSUssWUFBWSxDQUFDQyxVQUFVLENBQUNGLFFBQVEsQ0FBQyxFQUFFO1lBQ3JDLCtDQUErQztZQUMvQ0MsWUFBWSxHQUFHQSxZQUFZLENBQUNFLEtBQUssQ0FBQ0gsUUFBUSxDQUFDSSxNQUFNLENBQUMsQ0FBQztRQUNyRCxDQUFDO1FBQ0QseURBQXlEO1FBQ3pELElBQUlILFlBQVksQ0FBQ0MsVUFBVSxDQUFDLEdBQUcsQ0FBQyxFQUFFO1lBQ2hDRCxZQUFZLEdBQUdBLFlBQVksQ0FBQ0UsS0FBSyxDQUFDLENBQUMsQ0FBQyxDQUFDO1FBQ3ZDLENBQUM7UUFDRCw0Q0FBNEM7UUFDNUMsTUFBTUUsT0FBTyxHQUFHO1lBQUUsR0FBR1YsSUFBSTtZQUFFQyxJQUFJLEVBQUVLLFlBQVk7U0FBRTtRQUMvQyxJQUFJTixJQUFJLENBQUNFLFFBQVEsRUFBRTtZQUNqQlEsT0FBTyxDQUFDUixRQUFRLEdBQUdGLElBQUksQ0FBQ0UsUUFBUSxDQUFDUyxHQUFHLENBQUMsQ0FBQ0MsS0FBSyxHQUN6Q1IsYUFBYSxDQUFDUSxLQUFLLEVBQUVQLFFBQVEsQ0FBQyxDQUMvQixDQUFDO1FBQ0osQ0FBQztRQUNELE9BQU9LLE9BQU8sQ0FBQztJQUNqQixDQUFDO0lBRUQsMERBQTBEO0lBQzFELE1BQU1HLFNBQVMsR0FBR2hCLFFBQVEsQ0FBQ1AsdURBQXNCLEVBQUVNLFNBQVMsQ0FBQztJQUU3RCxJQUFJLENBQUNpQixTQUFTLEVBQUU7UUFDZCxPQUFPcEIsR0FBRyxDQUFDcUIsTUFBTSxDQUFDLEdBQUcsQ0FBQyxDQUFDQyxJQUFJLENBQUM7WUFBRUMsS0FBSyxFQUFFLHFCQUFxQjtTQUFFLENBQUMsQ0FBQztJQUNoRSxDQUFDO0lBRUQsSUFBSUgsU0FBUyxDQUFDSSxJQUFJLEtBQUssV0FBVyxFQUFFO1FBQ2xDLGtFQUFrRTtRQUNsRSxNQUFNZixRQUFRLEdBQUcsQ0FBQ1csU0FBUyxDQUFDWCxRQUFRLElBQUksRUFBRSxFQUFFUyxHQUFHLENBQUMsQ0FBQ0MsS0FBSyxHQUNwRFIsYUFBYSxDQUFDUSxLQUFLLEVBQUVDLFNBQVMsQ0FBQ1osSUFBSSxDQUFDLENBQ3JDO1FBQ0QsT0FBT1IsR0FBRyxDQUFDcUIsTUFBTSxDQUFDLEdBQUcsQ0FBQyxDQUFDQyxJQUFJLENBQUNiLFFBQVEsQ0FBQyxDQUFDO0lBQ3hDLE9BQU87UUFDTCxnRUFBZ0U7UUFDaEUsTUFBTWdCLFlBQVksR0FBR2QsYUFBYSxDQUFDUyxTQUFTLEVBQUVqQixTQUFTLENBQUM7UUFDeEQsT0FBT0gsR0FBRyxDQUFDcUIsTUFBTSxDQUFDLEdBQUcsQ0FBQyxDQUFDQyxJQUFJLENBQUNHLFlBQVksQ0FBQyxDQUFDO0lBQzVDLENBQUM7QUFDSCxDQUFDIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vbmV4dC1sYW5kaW5nLXZwbi8uL3BhZ2VzL2FwaS9nZXREb2N1bWVudGF0aW9uU3RydWN0dXJlLmpzPzkwMTIiXSwic291cmNlc0NvbnRlbnQiOlsiLy8gaW1wb3J0IGZzIGZyb20gXCJmc1wiO1xuLy8gaW1wb3J0IHBhdGggZnJvbSBcInBhdGhcIjtcblxuLy8gZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24gaGFuZGxlcihyZXEsIHJlcykge1xuLy8gICBjb25zdCB7IGRpciB9ID0gcmVxLnF1ZXJ5OyAvLyBHZXQgdGhlIGRpcmVjdG9yeSBmcm9tIHRoZSBxdWVyeSBzdHJpbmdcblxuLy8gICAvLyBEZWZhdWx0IHRvIHRoZSAnV2VsY29tZS10by1HcmlkJyBkaXJlY3RvcnkgaWYgbm8gZGlyZWN0b3J5IGlzIHByb3ZpZGVkXG4vLyAgIGNvbnN0IGFydGljbGVEaXJQYXRoID0gcGF0aC5qb2luKFxuLy8gICAgIHByb2Nlc3MuY3dkKCksXG4vLyAgICAgXCJwYWdlc1wiLFxuLy8gICAgIGRpciB8fCBcIi9Eb2N1bWVudGF0aW9uL1dlbGNvbWUtdG8tR3JpZFwiIC8vIFVzZSB0aGUgcHJvdmlkZWQgZGlyZWN0b3J5IG9yIGZhbGxiYWNrXG4vLyAgICk7XG5cbi8vICAgLy8gRnVuY3Rpb24gdG8gcmVhZCBhbGwgZGlyZWN0b3JpZXMgYW5kIGFydGljbGVzLCB0cmFja2luZyB0aGUgcmVsYXRpdmUgcGF0aFxuLy8gICBjb25zdCBnZXRTdHJ1Y3R1cmUgPSAoZGlyLCBjdXJyZW50UGF0aCA9IFwiXCIpID0+IHtcbi8vICAgICBjb25zdCBpdGVtcyA9IGZzLnJlYWRkaXJTeW5jKGRpciwgeyB3aXRoRmlsZVR5cGVzOiB0cnVlIH0pO1xuXG4vLyAgICAgcmV0dXJuIGl0ZW1zXG4vLyAgICAgICAubWFwKChpdGVtKSA9PiB7XG4vLyAgICAgICAgIGNvbnN0IGl0ZW1QYXRoID0gcGF0aC5qb2luKGRpciwgaXRlbS5uYW1lKTtcbi8vICAgICAgICAgY29uc3QgcmVsYXRpdmVQYXRoID0gcGF0aC5qb2luKFxuLy8gICAgICAgICAgIGN1cnJlbnRQYXRoLFxuLy8gICAgICAgICAgIGl0ZW0ubmFtZS5yZXBsYWNlKFwiLmpzXCIsIFwiXCIpXG4vLyAgICAgICAgICk7IC8vIFJlbW92ZSAuanMgZnJvbSB0aGUgcGF0aFxuXG4vLyAgICAgICAgIC8vIElmIGl0J3MgYSBkaXJlY3RvcnksIHJlY3Vyc2l2ZWx5IHJlYWQgaXRzIGNvbnRlbnRzXG4vLyAgICAgICAgIGlmIChpdGVtLmlzRGlyZWN0b3J5KCkpIHtcbi8vICAgICAgICAgICByZXR1cm4ge1xuLy8gICAgICAgICAgICAgdHlwZTogXCJkaXJlY3RvcnlcIixcbi8vICAgICAgICAgICAgIG5hbWU6IGl0ZW0ubmFtZSxcbi8vICAgICAgICAgICAgIHBhdGg6IHJlbGF0aXZlUGF0aCwgLy8gU2F2ZSB0aGUgY3VycmVudCBkaXJlY3RvcnkgcGF0aFxuLy8gICAgICAgICAgICAgY2hpbGRyZW46IGdldFN0cnVjdHVyZShpdGVtUGF0aCwgcmVsYXRpdmVQYXRoKSxcbi8vICAgICAgICAgICB9O1xuLy8gICAgICAgICB9XG5cbi8vICAgICAgICAgLy8gSWYgaXQncyBhIGZpbGUgKGFuZCBlbmRzIHdpdGggLmpzKSwgdHJlYXQgaXQgYXMgYW4gYXJ0aWNsZVxuLy8gICAgICAgICBpZiAoXG4vLyAgICAgICAgICAgaXRlbS5pc0ZpbGUoKSAmJlxuLy8gICAgICAgICAgIGl0ZW0ubmFtZS5lbmRzV2l0aChcIi5qc1wiKSAmJlxuLy8gICAgICAgICAgIGl0ZW0ubmFtZSAhPT0gXCJpbmRleC5qc1wiXG4vLyAgICAgICAgICkge1xuLy8gICAgICAgICAgIHJldHVybiB7XG4vLyAgICAgICAgICAgICB0eXBlOiBcImZpbGVcIixcbi8vICAgICAgICAgICAgIG5hbWU6IGl0ZW0ubmFtZS5yZXBsYWNlKFwiLmpzXCIsIFwiXCIpLCAvLyBSZW1vdmUgLmpzIGZyb20gdGhlIG5hbWVcbi8vICAgICAgICAgICAgIHBhdGg6IHJlbGF0aXZlUGF0aCwgLy8gVXNlIHRoZSBwYXRoIHdpdGhvdXQgLmpzXG4vLyAgICAgICAgICAgfTtcbi8vICAgICAgICAgfVxuLy8gICAgICAgfSlcbi8vICAgICAgIC5maWx0ZXIoQm9vbGVhbik7IC8vIEZpbHRlciBvdXQgYW55IHVuZGVmaW5lZCBlbnRyaWVzXG4vLyAgIH07XG5cbi8vICAgLy8gRW5zdXJlIHRoZSBkaXJlY3RvcnkgZXhpc3RzIGJlZm9yZSBwcm9jZWVkaW5nXG4vLyAgIGlmICghZnMuZXhpc3RzU3luYyhhcnRpY2xlRGlyUGF0aCkpIHtcbi8vICAgICByZXR1cm4gcmVzLnN0YXR1cyg0MDQpLmpzb24oeyBlcnJvcjogXCJEaXJlY3Rvcnkgbm90IGZvdW5kXCIgfSk7XG4vLyAgIH1cblxuLy8gICAvLyBGZXRjaCBzdHJ1Y3R1cmUgZm9yIGRpcmVjdG9yaWVzIHVuZGVyIHRoZSBzcGVjaWZpZWQgcGF0aFxuLy8gICBjb25zdCBkb2N1bWVudGF0aW9uU3RydWN0dXJlID0gZ2V0U3RydWN0dXJlKGFydGljbGVEaXJQYXRoKTtcblxuLy8gICByZXMuc3RhdHVzKDIwMCkuanNvbihkb2N1bWVudGF0aW9uU3RydWN0dXJlKTtcbi8vIH1cblxuLy8gcGFnZXMvYXBpL2RvY3VtZW50YXRpb24uanNcbmltcG9ydCBkb2N1bWVudGF0aW9uU3RydWN0dXJlIGZyb20gXCIuLi8uLi9wdWJsaWMvZG9jdW1lbnRhdGlvbi5qc29uXCI7XG5cbmV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uIGhhbmRsZXIocmVxLCByZXMpIHtcbiAgY29uc3QgeyBkaXIgfSA9IHJlcS5xdWVyeTtcbiAgLy8gVXNlIHRoZSBwcm92aWRlZCBkaXJlY3Rvcnkgb3IgZGVmYXVsdCB0byAnL0RvY3VtZW50YXRpb24vV2VsY29tZS10by1HcmlkJ1xuICBjb25zdCB0YXJnZXREaXIgPSBkaXIgfHwgXCIvRG9jdW1lbnRhdGlvbi9XZWxjb21lLXRvLUdyaWRcIjtcblxuICAvLyBSZWN1cnNpdmVseSBzZWFyY2ggZm9yIHRoZSBub2RlIHRoYXQgbWF0Y2hlcyB0aGUgdGFyZ2V0IHBhdGguXG4gIGZ1bmN0aW9uIGZpbmROb2RlKG5vZGVzLCB0YXJnZXRQYXRoKSB7XG4gICAgZm9yIChjb25zdCBub2RlIG9mIG5vZGVzKSB7XG4gICAgICBpZiAobm9kZS5wYXRoID09PSB0YXJnZXRQYXRoKSB7XG4gICAgICAgIHJldHVybiBub2RlO1xuICAgICAgfVxuICAgICAgaWYgKG5vZGUuY2hpbGRyZW4pIHtcbiAgICAgICAgY29uc3QgZm91bmQgPSBmaW5kTm9kZShub2RlLmNoaWxkcmVuLCB0YXJnZXRQYXRoKTtcbiAgICAgICAgaWYgKGZvdW5kKSByZXR1cm4gZm91bmQ7XG4gICAgICB9XG4gICAgfVxuICAgIHJldHVybiBudWxsO1xuICB9XG5cbiAgLy8gR2l2ZW4gYSBub2RlIGFuZCBpdHMgcGFyZW50J3MgcGF0aCwgc3RyaXAgdGhlIHBhcmVudCdzIHBhdGggcHJlZml4XG4gIC8vIGZyb20gdGhlIG5vZGUncyBmdWxsIHBhdGgsIGFuZCBkbyBzbyByZWN1cnNpdmVseSBmb3IgYW55IGNoaWxkcmVuLlxuICBmdW5jdGlvbiBzdHJpcEJhc2VQYXRoKG5vZGUsIGJhc2VQYXRoKSB7XG4gICAgbGV0IHJlbGF0aXZlUGF0aCA9IG5vZGUucGF0aDtcbiAgICBpZiAocmVsYXRpdmVQYXRoLnN0YXJ0c1dpdGgoYmFzZVBhdGgpKSB7XG4gICAgICAvLyBSZW1vdmUgdGhlIGJhc2VQYXRoIHBhcnQgZnJvbSB0aGUgZnVsbCBwYXRoLlxuICAgICAgcmVsYXRpdmVQYXRoID0gcmVsYXRpdmVQYXRoLnNsaWNlKGJhc2VQYXRoLmxlbmd0aCk7XG4gICAgfVxuICAgIC8vIFJlbW92ZSBhbnkgbGVhZGluZyBzbGFzaCB0byBnZXQgYSBjbGVhbiByZWxhdGl2ZSBwYXRoLlxuICAgIGlmIChyZWxhdGl2ZVBhdGguc3RhcnRzV2l0aChcIi9cIikpIHtcbiAgICAgIHJlbGF0aXZlUGF0aCA9IHJlbGF0aXZlUGF0aC5zbGljZSgxKTtcbiAgICB9XG4gICAgLy8gQ3JlYXRlIGEgbmV3IG5vZGUgd2l0aCB0aGUgcmVsYXRpdmUgcGF0aC5cbiAgICBjb25zdCBuZXdOb2RlID0geyAuLi5ub2RlLCBwYXRoOiByZWxhdGl2ZVBhdGggfTtcbiAgICBpZiAobm9kZS5jaGlsZHJlbikge1xuICAgICAgbmV3Tm9kZS5jaGlsZHJlbiA9IG5vZGUuY2hpbGRyZW4ubWFwKChjaGlsZCkgPT5cbiAgICAgICAgc3RyaXBCYXNlUGF0aChjaGlsZCwgYmFzZVBhdGgpXG4gICAgICApO1xuICAgIH1cbiAgICByZXR1cm4gbmV3Tm9kZTtcbiAgfVxuXG4gIC8vIEZpbmQgdGhlIG5vZGUgY29ycmVzcG9uZGluZyB0byB0aGUgcmVxdWVzdGVkIGRpcmVjdG9yeS5cbiAgY29uc3QgZm91bmROb2RlID0gZmluZE5vZGUoZG9jdW1lbnRhdGlvblN0cnVjdHVyZSwgdGFyZ2V0RGlyKTtcblxuICBpZiAoIWZvdW5kTm9kZSkge1xuICAgIHJldHVybiByZXMuc3RhdHVzKDQwNCkuanNvbih7IGVycm9yOiBcIkRpcmVjdG9yeSBub3QgZm91bmRcIiB9KTtcbiAgfVxuXG4gIGlmIChmb3VuZE5vZGUudHlwZSA9PT0gXCJkaXJlY3RvcnlcIikge1xuICAgIC8vIEZvciBkaXJlY3RvcmllcywgbWFwIG92ZXIgdGhlIGNoaWxkcmVuIGFuZCBzdHJpcCB0aGUgYmFzZSBwYXRoLlxuICAgIGNvbnN0IGNoaWxkcmVuID0gKGZvdW5kTm9kZS5jaGlsZHJlbiB8fCBbXSkubWFwKChjaGlsZCkgPT5cbiAgICAgIHN0cmlwQmFzZVBhdGgoY2hpbGQsIGZvdW5kTm9kZS5wYXRoKVxuICAgICk7XG4gICAgcmV0dXJuIHJlcy5zdGF0dXMoMjAwKS5qc29uKGNoaWxkcmVuKTtcbiAgfSBlbHNlIHtcbiAgICAvLyBGb3IgYSBmaWxlLCB5b3UgbWlnaHQgYWxzbyB3YW50IHRvIGFkanVzdCB0aGUgcGF0aCBpZiBuZWVkZWQuXG4gICAgY29uc3QgcmVsYXRpdmVGaWxlID0gc3RyaXBCYXNlUGF0aChmb3VuZE5vZGUsIHRhcmdldERpcik7XG4gICAgcmV0dXJuIHJlcy5zdGF0dXMoMjAwKS5qc29uKHJlbGF0aXZlRmlsZSk7XG4gIH1cbn1cbiJdLCJuYW1lcyI6WyJkb2N1bWVudGF0aW9uU3RydWN0dXJlIiwiaGFuZGxlciIsInJlcSIsInJlcyIsImRpciIsInF1ZXJ5IiwidGFyZ2V0RGlyIiwiZmluZE5vZGUiLCJub2RlcyIsInRhcmdldFBhdGgiLCJub2RlIiwicGF0aCIsImNoaWxkcmVuIiwiZm91bmQiLCJzdHJpcEJhc2VQYXRoIiwiYmFzZVBhdGgiLCJyZWxhdGl2ZVBhdGgiLCJzdGFydHNXaXRoIiwic2xpY2UiLCJsZW5ndGgiLCJuZXdOb2RlIiwibWFwIiwiY2hpbGQiLCJmb3VuZE5vZGUiLCJzdGF0dXMiLCJqc29uIiwiZXJyb3IiLCJ0eXBlIiwicmVsYXRpdmVGaWxlIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(api)/./pages/api/getDocumentationStructure.js\n");
 
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, {
-  "default": () => (/* binding */ handler)
-});
+/***/ }),
 
-;// CONCATENATED MODULE: external "fs"
-const external_fs_namespaceObject = require("fs");
-var external_fs_default = /*#__PURE__*/__webpack_require__.n(external_fs_namespaceObject);
-;// CONCATENATED MODULE: external "path"
-const external_path_namespaceObject = require("path");
-var external_path_default = /*#__PURE__*/__webpack_require__.n(external_path_namespaceObject);
-;// CONCATENATED MODULE: ./pages/api/getDocumentationStructure.js
+/***/ "(api)/./public/documentation.json":
+/*!***********************************!*\
+  !*** ./public/documentation.json ***!
+  \***********************************/
+/***/ ((module) => {
 
-
-function handler(req, res) {
-    const { dir  } = req.query; // Get the directory from the query string
-    // Default to the 'Welcome-to-Grid' directory if no directory is provided
-    const articleDirPath = external_path_default().join(process.cwd(), "pages", dir || "/Documentation/Welcome-to-Grid" // Use the provided directory or fallback
-    );
-    // Function to read all directories and articles, tracking the relative path
-    const getStructure = (dir, currentPath = "")=>{
-        const items = external_fs_default().readdirSync(dir, {
-            withFileTypes: true
-        });
-        return items.map((item)=>{
-            const itemPath = external_path_default().join(dir, item.name);
-            const relativePath = external_path_default().join(currentPath, item.name.replace(".js", "")); // Remove .js from the path
-            // If it's a directory, recursively read its contents
-            if (item.isDirectory()) {
-                return {
-                    type: "directory",
-                    name: item.name,
-                    path: relativePath,
-                    children: getStructure(itemPath, relativePath)
-                };
-            }
-            // If it's a file (and ends with .js), treat it as an article
-            if (item.isFile() && item.name.endsWith(".js") && item.name !== "index.js") {
-                return {
-                    type: "file",
-                    name: item.name.replace(".js", ""),
-                    path: relativePath
-                };
-            }
-        }).filter(Boolean); // Filter out any undefined entries
-    };
-    // Ensure the directory exists before proceeding
-    if (!external_fs_default().existsSync(articleDirPath)) {
-        return res.status(404).json({
-            error: "Directory not found"
-        });
-    }
-    // Fetch structure for directories under the specified path
-    const documentationStructure = getStructure(articleDirPath);
-    res.status(200).json(documentationStructure);
-}
-
+module.exports = JSON.parse('[{"type":"directory","name":"Welcome-to-Grid","path":"/Documentation/Welcome-to-Grid","children":[{"type":"directory","name":"How-we-Say-Welcome","path":"/Documentation/Welcome-to-Grid/How-we-Say-Welcome","children":[{"type":"file","name":"Hi-Yall","path":"/Documentation/Welcome-to-Grid/How-we-Say-Welcome/Hi-Yall"}]}]}]');
 
 /***/ })
 
@@ -78,7 +40,7 @@ function handler(req, res) {
 var __webpack_require__ = require("../../webpack-api-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = (__webpack_exec__(1921));
+var __webpack_exports__ = (__webpack_exec__("(api)/./pages/api/getDocumentationStructure.js"));
 module.exports = __webpack_exports__;
 
 })();

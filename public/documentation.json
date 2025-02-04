@@ -1,0 +1,22 @@
+[
+    {
+      "type": "directory",
+      "name": "Welcome-to-Grid",
+      "path": "/Documentation/Welcome-to-Grid",
+      "children": [
+        {
+          "type": "directory",
+          "name": "How-we-Say-Welcome",
+          "path": "/Documentation/Welcome-to-Grid/How-we-Say-Welcome",
+          "children": [
+            {
+              "type": "file",
+              "name": "Hi-Yall",
+              "path": "/Documentation/Welcome-to-Grid/How-we-Say-Welcome/Hi-Yall"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+  
