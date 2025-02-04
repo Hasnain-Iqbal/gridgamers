@@ -257,7 +257,7 @@ const GridPartners = ({}) => {
                         <div className="flex items-center rounded border bg-surface border-transparent shadow-2dp grow mb-10 relative">
                             {/* Search Icon */}
                             <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">
-                                <SearchIcon />
+                                <img src="/assets/Icon/search_icon.svg" />
                             </div>
                             
                             {/* Input Field */}
@@ -311,7 +311,7 @@ const GridPartners = ({}) => {
                             {/* Column 2 - Grid Partners List */}
                                 {/* Search Icon */}
                                 <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">
-                                    <SearchIcon />
+                                    <img src="/assets/Icon/search_icon.svg" />
                                 </div>                            {/* 1/4 of the width (3/12) */}
                                 <DropdownSearch
                                     name={"Category"}

@@ -450,7 +450,7 @@ const GridAI = ({}) => {
               placeholder="Message Copliot..."
               disabled
             />
-            <MicIcon />
+            <img src="/assets/Icon/mic-icon.svg" />
           </div>
         </div>
       </div>

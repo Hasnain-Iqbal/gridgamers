@@ -248,7 +248,7 @@ const CareersPage = () => {
               <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 w-full">
                 <div className="relative w-full md:w-auto">
                   <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">
-                    <SearchIcon />
+                    <img src="/assets/Icon/search_icon.svg" />
                   </div>
                   <input
                     className="shadow-md w-full md:w-[22vw] p-3 pl-10 rounded-md text-sm border border-[#E7ECF1] focus:outline-none focus:ring-[1px] focus:border-[black]"
@@ -258,7 +258,7 @@ const CareersPage = () => {
 
                 <div className="relative w-full md:w-auto">
                   <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">
-                    <SearchIcon />
+                  <img src="/assets/Icon/search_icon.svg" />
                   </div>
                   <input
                     className="shadow-md w-full md:w-[22vw] p-3 pl-10 rounded-md text-sm border border-[#E7ECF1] focus:outline-none focus:ring-[1px] focus:border-[black]"
@@ -346,7 +346,7 @@ const CareersPage = () => {
             ) : (
               <div className="flex w-full justify-center items-center min-h-[50vh]">
                 <div className="text-center">
-                  <FindJob />
+                  <img src="/assets/FindJob.svg" />
                   <p className="text-2xl font-bold text-[black] mb-3">
                     Select a job
                   </p>

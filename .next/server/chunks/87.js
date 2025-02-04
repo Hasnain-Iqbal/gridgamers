@@ -4,12 +4,9 @@ exports.ids = [87];
 exports.modules = {
 
 /***/ 3352:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (() => {
 
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({"src":"/_next/static/media/search_icon.e915432f.svg","height":20,"width":20});
+/* unused harmony default export */ var __WEBPACK_DEFAULT_EXPORT__ = ({"src":"/_next/static/media/search_icon.e915432f.svg","height":20,"width":20});
 
 /***/ }),
 
